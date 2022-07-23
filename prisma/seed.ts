@@ -5,11 +5,18 @@ import {
   TeacherDisciplines,
   Teachers,
   Terms,
+  Users,
 } from "@prisma/client";
+import { BcryptUtils } from "@utils/BcryptUtils";
 
 const prisma = new PrismaClient();
 
 const main = async () => {
+  const { encrypt } = BcryptUtils;
+  const user: Omit<Users, "id"> = {
+    email: "gabriel@gabriel.com",
+    password: await encrypt("123456"),
+  };
   const terms: Omit<Terms, "id">[] = [
     { number: 1 },
     { number: 2 },
@@ -47,6 +54,7 @@ const main = async () => {
     { teacherId: 2, disciplineId: 6 },
   ];
 
+  await prisma.users.create({ data: user });
   await prisma.terms.createMany({ data: terms });
   await prisma.categories.createMany({ data: categories });
   await prisma.teachers.createMany({ data: teachers });
