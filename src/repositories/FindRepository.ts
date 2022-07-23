@@ -6,7 +6,7 @@ export class FindRepository {
     table: Prisma.ModelName,
     data: { where: Y },
   ): Promise<T> {
-    const { query } = new QueryFactory(table, "findMany");
+    const { query } = new QueryFactory(table, "findUnique");
     const result = await query(data);
     return result;
   }

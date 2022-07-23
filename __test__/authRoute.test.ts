@@ -1,26 +1,13 @@
 import supertest from "supertest";
-import { App } from "../src/app";
 import { execSync } from "child_process";
-import { AuthTestFactory } from "./factories/AuthTestFactory";
+import { App } from "@/app";
 import prisma from "@db/database";
+import { AuthTestFactory } from "@tests/factories/AuthTestFactory";
 
-describe("POST /signin", () => {
+describe("POST /signUp", () => {
   beforeAll(async () => {
     execSync("yarn prisma migrate reset --force");
   });
-  it("should return SignIn", async () => {
-    const { app } = new App();
-    const response = await supertest(app).post("/signIn");
-
-    expect(response.text).toBe("SignIn");
-    expect(response.status).toBe(200);
-  });
-  afterEach(() => {
-    prisma.$disconnect();
-  });
-});
-
-describe("POST /signUp", () => {
   it("should return 201 (correct_password)", async () => {
     const { app } = new App();
 
@@ -57,6 +44,48 @@ describe("POST /signUp", () => {
 
     expect(response.status).toBe(409);
   });
+  afterEach(() => {
+    prisma.$disconnect();
+  });
+});
+
+describe("POST /signin", () => {
+  it("should return 200 (correct_signIn", async () => {
+    const { app } = new App();
+    const response = await supertest(app)
+      .post("/signIn")
+      .send(AuthTestFactory.createSignIn("correct_signIn"));
+
+    expect(response.status).toBe(200);
+  });
+
+  it("should return 404 (incorrect_email)", async () => {
+    const { app } = new App();
+    const response = await supertest(app)
+      .post("/signIn")
+      .send(AuthTestFactory.createSignIn("incorrect_email"));
+
+    expect(response.status).toBe(404);
+  });
+
+  it("should return 422 (incorrect_password)", async () => {
+    const { app } = new App();
+    const response = await supertest(app)
+      .post("/signIn")
+      .send(AuthTestFactory.createSignIn("incorrect_password"));
+
+    expect(response.status).toBe(422);
+  });
+
+  it("should return 422 (empty_fields", async () => {
+    const { app } = new App();
+    const response = await supertest(app)
+      .post("/signIn")
+      .send(AuthTestFactory.createSignIn("empty_fields"));
+
+    expect(response.status).toBe(422);
+  });
+
   afterEach(() => {
     prisma.$disconnect();
   });

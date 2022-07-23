@@ -4,9 +4,9 @@
     "module": "CommonJS",
     "moduleResolution": "node",
     "outDir": "build",
-    "rootDir": "src",
     "target": "ES2016",
     "paths": {
+      "@/*": ["./src/*"],
       "@db/*": ["./src/db/*"],
       "@routers/*": ["./src/routers/*"],
       "@middlewares/*": ["./src/middlewares/*"],
@@ -16,7 +16,8 @@
       "@utils/*": ["./src/utils/*"],
       "@schemas/*": ["./src/models/*"],
       "@types/*": ["./src/models/*"],
-      "@repositories/*": ["./src/repositories/*"]
+      "@repositories/*": ["./src/repositories/*"],
+      "@tests/factories/*": ["./__test__/factories/*"]
     }
   },
   "ts-node": {

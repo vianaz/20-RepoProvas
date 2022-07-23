@@ -9,7 +9,7 @@
     "buid": "tsc",
     "start": "node build/server.js",
     "dev": "tsnd --transpile-only --respawn --ignore-watch node_modules --exit-child --cls --rs -r dotenv/config -r tsconfig-paths/register src/server.ts",
-    "test": "jest -i --verbose"
+    "test": "clear && jest -i --verbose"
   },
   "prisma": {
     "seed": "ts-node -r tsconfig-paths/register prisma/seed.ts"

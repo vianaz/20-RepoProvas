@@ -1,10 +1,10 @@
-import { ISignUp } from "@schemas/types/AuthInterface";
+import { ISignIn, ISignUp } from "@schemas/types/AuthInterface";
 import { AuthService } from "@services/AuthService";
 import { Request, Response } from "express";
 
 export class SignIn {
-  static async signIn(req: Request, res: Response) {
-    res.send("SignIn");
+  static async signIn(req: Request<ISignIn, ISignIn, ISignIn>, res: Response) {
+    res.sendStatus(200);
   }
 }
 

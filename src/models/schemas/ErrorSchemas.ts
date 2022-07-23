@@ -11,4 +11,12 @@ export const errorSchemas = {
     statusCode: 409,
     message: "Email already exists",
   },
+  error_email_not_found: {
+    statusCode: 404,
+    message: "Email not found",
+  },
+  error_password_invalid: {
+    statusCode: 422,
+    message: "Password is invalid",
+  },
 };

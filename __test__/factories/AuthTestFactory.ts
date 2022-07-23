@@ -1,7 +1,7 @@
 import { faker } from "@faker-js/faker";
 
 const fakerPassword = faker.internet.password();
-const signupObject = {
+const signUpObject = {
   empty_space: {},
   existing_email: {
     email: "gabriel@gabriel.com",
@@ -19,15 +19,31 @@ const signupObject = {
     confirmPassword: fakerPassword,
   },
 };
+const signInObject = {
+  correct_signIn: {
+    email: "gabriel@gabriel.com",
+    password: "123456",
+  },
+  incorrect_email: {
+    email: faker.internet.email(),
+    password: faker.internet.password(),
+  },
+  incorrect_password: {
+    email: "gabriel@gabriel.com",
+    password: faker.internet.password(),
+  },
+  empty_fields: {},
+};
 
-type SignUpTestTypes = keyof typeof signupObject;
+type SignUpTestTypes = keyof typeof signUpObject;
+type SignInTestTypes = keyof typeof signInObject;
 
 export class AuthTestFactory {
-  //   static createSignIn(): SignIn {
-  //     return new SignIn();
-  //   }
+  static createSignIn(type: SignInTestTypes) {
+    return signInObject[type];
+  }
 
   static createSignUp(type: SignUpTestTypes) {
-    return signupObject[type];
+    return signUpObject[type];
   }
 }
