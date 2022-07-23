@@ -1,3 +1,5 @@
+import { ISignUp } from "@schemas/types/AuthInterface";
+import { AuthService } from "@services/AuthService";
 import { Request, Response } from "express";
 
 export class SignIn {
@@ -7,7 +9,8 @@ export class SignIn {
 }
 
 export class SignUp {
-  static async signUp(req: Request, res: Response) {
-    res.send("signUp");
+  static async signUp(req: Request<ISignUp, ISignUp, ISignUp>, res: Response) {
+    AuthService.insertUser(req.body);
+    res.sendStatus(201);
   }
 }

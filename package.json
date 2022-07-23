@@ -9,10 +9,10 @@
     "buid": "tsc",
     "start": "node build/server.js",
     "dev": "tsnd --transpile-only --respawn --ignore-watch node_modules --exit-child --cls --rs -r dotenv/config -r tsconfig-paths/register src/server.ts",
-    "test": "jest"
+    "test": "jest -i --verbose"
   },
   "prisma": {
-    "seed": "ts-node prisma/seed.ts"
+    "seed": "ts-node -r tsconfig-paths/register prisma/seed.ts"
   },
   "dependencies": {
     "@prisma/client": "4.1.0",
@@ -20,21 +20,23 @@
     "cors": "^2.8.5",
     "express": "^4.18.1",
     "express-async-errors": "^3.1.1",
+    "joi": "^17.6.0",
     "jsonwebtoken": "^8.5.1",
     "prisma": "^4.1.0",
     "ts-node": "^10.9.1"
   },
   "devDependencies": {
+    "@faker-js/faker": "^7.3.0",
     "@types/bcrypt": "^5.0.0",
     "@types/cors": "^2.8.12",
     "@types/express": "^4.17.13",
     "@types/jest": "^28.1.6",
+    "@types/joi": "^17.2.3",
     "@types/supertest": "^2.0.12",
     "@typescript-eslint/eslint-plugin": "^5.30.7",
     "@typescript-eslint/parser": "^5.30.7",
     "dotenv": "^16.0.1",
     "eslint": "^8.20.0",
-    "faker": "^6.6.6",
     "jest": "^28.1.3",
     "supertest": "^6.2.4",
     "ts-jest": "^28.0.7",

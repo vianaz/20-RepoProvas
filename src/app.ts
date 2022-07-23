@@ -1,7 +1,8 @@
-import express, { Application } from "express";
 import "express-async-errors";
+import express, { Application } from "express";
 import cors from "cors";
 import { AuthRouter } from "@routers/AuthRouter";
+import { errorHandlerMiddleware } from "@middlewares/errorHandlerMiddlawere";
 
 export class App {
   public app: Application;
@@ -23,5 +24,6 @@ export class App {
     const { app } = this;
 
     app.use(new AuthRouter().router);
+    app.use(errorHandlerMiddleware);
   }
 }

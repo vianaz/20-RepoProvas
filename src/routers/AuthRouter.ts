@@ -1,4 +1,5 @@
 import { SignIn, SignUp } from "@controllers/AuthController";
+import { signUpMiddleware } from "@middlewares/signUpMiddleware";
 import { Router } from "express";
 
 export class AuthRouter {
@@ -12,7 +13,7 @@ export class AuthRouter {
   private routes(): void {
     const { router } = this;
 
-    router.post("/signIn", SignIn.signIn);
-    router.post("/signUp", SignUp.signUp);
+    router.post("/signin", SignIn.signIn);
+    router.post("/signup", signUpMiddleware, SignUp.signUp);
   }
 }
