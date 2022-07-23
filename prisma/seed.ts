@@ -7,7 +7,7 @@ import {
   Terms,
   Users,
 } from "@prisma/client";
-import { BcryptUtils } from "@utils/BcryptUtils";
+import { BcryptUtils } from "../src/utils/BcryptUtils";
 
 const prisma = new PrismaClient();
 
