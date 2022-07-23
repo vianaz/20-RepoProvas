@@ -6,19 +6,18 @@
     "outDir": "build",
     "rootDir": "src",
     "target": "ES2016",
-    "baseUrl": "./src/",
     "paths": {
-      "@schemas/*": ["schemas/*"],
-      "@db/*": ["db/*"],
-      "@routers/*": ["routers/*"],
-      "@middlewares/*": ["middlewares/*"],
-      "@controllers/*": ["controllers/*"],
-      "@services/*": ["services/*"],
-      "@utils/*": ["utils/*"],
-      "@errors/*": ["errors/*"],
-      "@types/*": ["types/*"],
-      "@repositories": ["repositories/*"],
-      "@types": ["types/*"]
+      "@schemas/*": ["./src/schemas/*"],
+      "@db/*": ["./src/db/*"],
+      "@routers/*": ["./src/routers/*"],
+      "@middlewares/*": ["./src/middlewares/*"],
+      "@controllers/*": ["./src/controllers/*"],
+      "@services/*": ["./src/services/*"],
+      "@utils/*": ["./src/utils/*"],
+      "@errors/*": ["./src/errors/*"],
+      "@types/*": ["./src/types/*"],
+      "@repositories": ["./src/repositories/*"],
+      "@types": ["./src/types/*"]
     }
   },
   "ts-node": {
