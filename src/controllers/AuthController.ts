@@ -1,10 +1,15 @@
+import { Users } from "@prisma/client";
 import { ISignIn, ISignUp } from "@schemas/types/AuthInterface";
 import { AuthService } from "@services/AuthService";
 import { Request, Response } from "express";
 
 export class SignIn {
-  static async signIn(req: Request<ISignIn, ISignIn, ISignIn>, res: Response) {
-    res.sendStatus(200);
+  static async signIn(
+    req: Request<ISignIn, ISignIn, ISignIn>,
+    res: Response<{ token: string }, Omit<Users, "password">>,
+  ) {
+    const token = await AuthService.login(res.locals);
+    res.send({ token });
   }
 }
 

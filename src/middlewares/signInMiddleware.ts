@@ -34,5 +34,6 @@ export const signInMiddleware = async (
   if (!isCorrectPassword)
     throw new ErrorFactory("error_password_invalid").error;
 
+  res.locals = { id: userInfo.id, email: userInfo.email };
   next();
 };

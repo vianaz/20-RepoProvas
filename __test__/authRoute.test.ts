@@ -57,6 +57,7 @@ describe("POST /signin", () => {
       .send(AuthTestFactory.createSignIn("correct_signIn"));
 
     expect(response.status).toBe(200);
+    expect(response.body.token).toBeDefined();
   });
 
   it("should return 404 (incorrect_email)", async () => {
