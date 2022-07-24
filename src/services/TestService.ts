@@ -2,9 +2,10 @@ import prisma from "@db/database";
 import { ErrorFactory } from "@factories/ErrorFactory";
 import { Prisma, Tests } from "@prisma/client";
 import { FindRepository } from "@repositories/FindRepository";
+import { GroupByRepository } from "@repositories/GroupByRepository";
 import { InsertRepository } from "@repositories/InsertRepository";
 
-export class TestService {
+export class InsertTestService {
   static async insertTest(
     name: string,
     pdfUrl: string,
@@ -63,5 +64,12 @@ export class TestService {
     }
 
     return { id: data.id };
+  }
+}
+
+export class GetByDisciplinesService {
+  static async getByDisciplinesAndTerms() {
+    const byTerms = await GroupByRepository.groupByTerms();
+    return byTerms;
   }
 }

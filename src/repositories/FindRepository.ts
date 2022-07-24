@@ -10,4 +10,12 @@ export class FindRepository {
     const result = await query(data);
     return result;
   }
+  static async findMany(
+    table: Prisma.ModelName,
+    data: { where: unknown },
+  ): Promise<unknown[]> {
+    const { query } = new QueryFactory(table, "findMany");
+    const result = await query(data);
+    return result;
+  }
 }
