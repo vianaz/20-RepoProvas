@@ -1,0 +1,38 @@
+_id: req_08d6844c257c4ee4bfe1efe255eb3dbc
+type: Request
+parentId: fld_b1cbc76462e64106b68151ef769d0601
+modified: 1658704072911
+created: 1658622466437
+url: "{{ _.url }}/{% request 'name', '', 0 %}"
+name: test
+description: ""
+method: POST
+body:
+  mimeType: application/json
+  text: >-
+    {
+    	"name": "{% faker 'commerce', '', '', '', 'product', 'catchPhrase', '', 'hexadecimal', 'future', '', 'commitEntry', 'phrase', 'maybe', 'fashion', 'emoji', 'text', '', '', 'jobType', '', 'word', '', '', '', '', '', 'pt_PT' %}",
+    	"pdfUrl": "{% faker 'image', '', '', '', '', '', '', '', '', '', '', '', '', 'image', '', '', '', '', '', '', '', '', '', '', '', '', 'pt_BR' %}",
+    	"category": "Projeto",
+    	"teacher": "Diego Pinho",
+    	"discipline": "React"
+    }
+parameters: []
+headers:
+  - name: Content-Type
+    value: application/json
+    id: pair_a6519999c0fe42e3987fcea620b0e667
+authentication:
+  type: bearer
+  token: "{% response 'body', 'req_79d5fdd9fa0340249173cb3b10ff6ed9',
+    'b64::JC50b2tlbg==::46b', 'always', 60 %}"
+  prefix: Bearer
+  disabled: false
+metaSortKey: -1658622466437
+isPrivate: false
+settingStoreCookies: true
+settingSendCookies: true
+settingDisableRenderRequestBody: false
+settingEncodeUrl: true
+settingRebuildPath: true
+settingFollowRedirects: global

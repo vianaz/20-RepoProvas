@@ -1,0 +1,25 @@
+_id: req_3f57850b54fe4da5a07f8a77befbdb4a
+type: Request
+parentId: fld_b1cbc76462e64106b68151ef769d0601
+modified: 1658706469755
+created: 1658670717941
+url: "{{ _.url }}/{% request 'name', '', 0 %}"
+name: test/terms
+description: ""
+method: GET
+body: {}
+parameters: []
+headers: []
+authentication:
+  type: bearer
+  token: "{% response 'body', 'req_79d5fdd9fa0340249173cb3b10ff6ed9',
+    'b64::JC50b2tlbg==::46b', 'always', 60 %}"
+  prefix: Bearer
+metaSortKey: -1658670717941
+isPrivate: false
+settingStoreCookies: true
+settingSendCookies: true
+settingDisableRenderRequestBody: false
+settingEncodeUrl: true
+settingRebuildPath: true
+settingFollowRedirects: global

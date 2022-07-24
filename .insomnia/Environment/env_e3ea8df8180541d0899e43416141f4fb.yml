@@ -1,0 +1,17 @@
+_id: env_e3ea8df8180541d0899e43416141f4fb
+type: Environment
+parentId: env_b50abc97070688b90457f1092391aec4b0870e55
+modified: 1658591198455
+created: 1658589299356
+name: Develop
+data:
+  url: localhost:5050
+  passoword: "{% faker 'internet', '', '', '', '', '', '', '', '', '', '', '', '',
+    '', 'password', '', '', '', '', '', '', '', '', '', '', '', 'pt_BR' %}"
+dataPropertyOrder:
+  "&":
+    - url
+    - passoword
+color: null
+isPrivate: false
+metaSortKey: 1658589299356
