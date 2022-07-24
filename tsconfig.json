@@ -4,21 +4,20 @@
     "module": "CommonJS",
     "moduleResolution": "node",
     "outDir": "build",
-    "rootDir": "src",
     "target": "ES2016",
-    "baseUrl": "./src/",
     "paths": {
-      "@schemas/*": ["schemas/*"],
-      "@db/*": ["db/*"],
-      "@routers/*": ["routers/*"],
-      "@middlewares/*": ["middlewares/*"],
-      "@controllers/*": ["controllers/*"],
-      "@services/*": ["services/*"],
-      "@utils/*": ["utils/*"],
-      "@errors/*": ["errors/*"],
-      "@types/*": ["types/*"],
-      "@repositories": ["repositories/*"],
-      "@types": ["types/*"]
+      "@/*": ["./src/*"],
+      "@db/*": ["./src/db/*"],
+      "@routers/*": ["./src/routers/*"],
+      "@middlewares/*": ["./src/middlewares/*"],
+      "@controllers/*": ["./src/controllers/*"],
+      "@factories/*": ["./src/factories/*"],
+      "@services/*": ["./src/services/*"],
+      "@utils/*": ["./src/utils/*"],
+      "@schemas/*": ["./src/models/*"],
+      "@types/*": ["./src/models/*"],
+      "@repositories/*": ["./src/repositories/*"],
+      "@tests/factories/*": ["./__test__/factories/*"]
     }
   },
   "ts-node": {
