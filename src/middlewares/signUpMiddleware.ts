@@ -2,7 +2,7 @@ import { ErrorFactory } from "@factories/ErrorFactory";
 import { Users } from "@prisma/client";
 import { FindRepository } from "@repositories/FindRepository";
 import { SignUpSchema } from "@schemas/schemas/joiSchemas";
-import { ISignIn, ISignUp } from "@schemas/types/AuthInterface";
+import { ISignUp } from "@schemas/types/AuthInterface";
 import { NextFunction, Request, Response } from "express";
 
 export const signUpMiddleware = async (
@@ -14,10 +14,7 @@ export const signUpMiddleware = async (
   if (error) throw new ErrorFactory("error_format_invalid").error;
 
   const { password, confirmPassword } = req.body;
-  const emailAreadyUsed = await FindRepository.findUnique<
-    Users,
-    Omit<ISignIn, "password">
-  >("Users", {
+  const emailAreadyUsed = await FindRepository.findUnique<Users>("Users", {
     where: { email: req.body.email },
   });
 

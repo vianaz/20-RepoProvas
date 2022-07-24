@@ -6,7 +6,6 @@
     "outDir": "build",
     "target": "ES2016",
     "paths": {
-      "@/*": ["./src/*"],
       "@db/*": ["./src/db/*"],
       "@routers/*": ["./src/routers/*"],
       "@middlewares/*": ["./src/middlewares/*"],

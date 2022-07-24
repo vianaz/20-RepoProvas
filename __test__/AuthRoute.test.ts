@@ -1,21 +1,21 @@
 import supertest from "supertest";
 import { execSync } from "child_process";
-import { App } from "@/app";
 import prisma from "@db/database";
 import { AuthTestFactory } from "@tests/factories/AuthTestFactory";
+import { App } from "../src/app";
 
-describe("POST /signUp", () => {
+describe("POST /signup", () => {
   beforeAll(async () => {
     execSync("yarn prisma migrate reset --force");
   });
-  it("should return 201 (correct_password)", async () => {
-    const { app } = new App();
 
+  it("should return 422 (empty_space)", async () => {
+    const { app } = new App();
     const response = await supertest(app)
       .post("/signup")
-      .send(AuthTestFactory.createSignUp("correct_password"));
+      .send(AuthTestFactory.createSignUp("empty_space"));
 
-    expect(response.status).toBe(201);
+    expect(response.status).toBe(422);
   });
 
   it("should return 422 (incorrect_password)", async () => {
@@ -27,13 +27,14 @@ describe("POST /signUp", () => {
     expect(response.status).toBe(422);
   });
 
-  it("should return 422 (empty_space)", async () => {
+  it("should return 201 (correct_password)", async () => {
     const { app } = new App();
+
     const response = await supertest(app)
       .post("/signup")
-      .send(AuthTestFactory.createSignUp("empty_space"));
+      .send(AuthTestFactory.createSignUp("correct_password"));
 
-    expect(response.status).toBe(422);
+    expect(response.status).toBe(201);
   });
 
   it("should return 409 (existing_email)", async () => {
@@ -50,14 +51,13 @@ describe("POST /signUp", () => {
 });
 
 describe("POST /signin", () => {
-  it("should return 200 (correct_signIn", async () => {
+  it("should return 422 (empty_fields", async () => {
     const { app } = new App();
     const response = await supertest(app)
       .post("/signIn")
-      .send(AuthTestFactory.createSignIn("correct_signIn"));
+      .send(AuthTestFactory.createSignIn("empty_fields"));
 
-    expect(response.status).toBe(200);
-    expect(response.body.token).toBeDefined();
+    expect(response.status).toBe(422);
   });
 
   it("should return 404 (incorrect_email)", async () => {
@@ -78,15 +78,15 @@ describe("POST /signin", () => {
     expect(response.status).toBe(422);
   });
 
-  it("should return 422 (empty_fields", async () => {
+  it("should return 200 (correct_signIn", async () => {
     const { app } = new App();
     const response = await supertest(app)
       .post("/signIn")
-      .send(AuthTestFactory.createSignIn("empty_fields"));
+      .send(AuthTestFactory.createSignIn("correct_signIn"));
 
-    expect(response.status).toBe(422);
+    expect(response.status).toBe(200);
+    expect(response.body.token).toBeDefined();
   });
-
   afterEach(() => {
     prisma.$disconnect();
   });

@@ -1,9 +1,9 @@
-import { JWTUtils } from "@/utils/JWTUtils";
 import { Users } from "@prisma/client";
 
 import { InsertRepository } from "@repositories/InsertRepository";
 import { ISignUp } from "@schemas/types/AuthInterface";
 import { BcryptUtils } from "@utils/BcryptUtils";
+import { JWTUtils } from "@utils/JWTUtils";
 
 export class AuthService {
   static async insertUser(data: Omit<ISignUp, "confirmPassword">) {
