@@ -4,7 +4,7 @@ import { App } from "@/app";
 import prisma from "@db/database";
 import { AuthTestFactory } from "@tests/factories/AuthTestFactory";
 
-describe("POST /signUp", () => {
+describe("POST /signup", () => {
   beforeAll(async () => {
     execSync("yarn prisma migrate reset --force");
   });

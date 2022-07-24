@@ -20,7 +20,7 @@ model Users {
 
 model Categories {
   id   Int    @id @default(autoincrement())
-  name String
+  name String @unique
 
   Tests Tests[]
 

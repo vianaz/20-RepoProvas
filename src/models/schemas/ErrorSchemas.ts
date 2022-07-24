@@ -19,4 +19,16 @@ export const errorSchemas = {
     statusCode: 422,
     message: "Password is invalid",
   },
+  error_without_token: {
+    statusCode: 401,
+    message: "You need send a token",
+  },
+  error_token_invalid: {
+    statusCode: 401,
+    message: "Token is invalid",
+  },
+  error_category_not_found: {
+    statusCode: 404,
+    message: "Not found",
+  },
 };

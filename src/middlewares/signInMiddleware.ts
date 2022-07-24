@@ -1,7 +1,7 @@
-import { SignInSchema } from "@/models/schemas/joiSchemas";
 import { ErrorFactory } from "@factories/ErrorFactory";
 import { Users } from "@prisma/client";
 import { FindRepository } from "@repositories/FindRepository";
+import { SignInSchema } from "@schemas/schemas/joiSchemas";
 import { ISignIn } from "@schemas/types/AuthInterface";
 import { BcryptUtils } from "@utils/BcryptUtils";
 import { NextFunction, Request, Response } from "express";
@@ -17,10 +17,7 @@ export const signInMiddleware = async (
   if (error) throw new ErrorFactory("error_format_invalid").error;
 
   const { email, password } = req.body;
-  const userInfo = await FindRepository.findUnique<
-    Users,
-    Omit<ISignIn, "password">
-  >("Users", {
+  const userInfo = await FindRepository.findUnique<Users>("Users", {
     where: { email },
   });
 

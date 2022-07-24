@@ -3,6 +3,7 @@ import express, { Application } from "express";
 import cors from "cors";
 import { AuthRouter } from "@routers/AuthRouter";
 import { errorHandlerMiddleware } from "@middlewares/errorHandlerMiddlawere";
+import { TestRouter } from "./routers/TestRouter";
 
 export class App {
   public app: Application;
@@ -24,6 +25,7 @@ export class App {
     const { app } = this;
 
     app.use(new AuthRouter().router);
+    app.use(new TestRouter().router);
     app.use(errorHandlerMiddleware);
   }
 }
