@@ -9,7 +9,7 @@ describe("POST /signup", () => {
     execSync("yarn prisma migrate reset --force");
   });
 
-  it("should return 422 (empty_space)", async () => {
+  it("should return 422 (empty field)", async () => {
     const { app } = new App();
     const response = await supertest(app)
       .post("/signup")
@@ -18,7 +18,7 @@ describe("POST /signup", () => {
     expect(response.status).toBe(422);
   });
 
-  it("should return 422 (incorrect_password)", async () => {
+  it("should return 422 (differents passwords)", async () => {
     const { app } = new App();
     const response = await supertest(app)
       .post("/signup")
@@ -27,7 +27,7 @@ describe("POST /signup", () => {
     expect(response.status).toBe(422);
   });
 
-  it("should return 201 (correct_password)", async () => {
+  it("should return 201 (correct password)", async () => {
     const { app } = new App();
 
     const response = await supertest(app)
@@ -37,7 +37,7 @@ describe("POST /signup", () => {
     expect(response.status).toBe(201);
   });
 
-  it("should return 409 (existing_email)", async () => {
+  it("should return 409 (existing email)", async () => {
     const { app } = new App();
     const response = await supertest(app)
       .post("/signup")
@@ -51,7 +51,7 @@ describe("POST /signup", () => {
 });
 
 describe("POST /signin", () => {
-  it("should return 422 (empty_fields", async () => {
+  it("should return 422 (empty fields)", async () => {
     const { app } = new App();
     const response = await supertest(app)
       .post("/signIn")
@@ -60,7 +60,7 @@ describe("POST /signin", () => {
     expect(response.status).toBe(422);
   });
 
-  it("should return 404 (incorrect_email)", async () => {
+  it("should return 404 (incorrect email)", async () => {
     const { app } = new App();
     const response = await supertest(app)
       .post("/signIn")
@@ -69,7 +69,7 @@ describe("POST /signin", () => {
     expect(response.status).toBe(404);
   });
 
-  it("should return 422 (incorrect_password)", async () => {
+  it("should return 422 (incorrect password)", async () => {
     const { app } = new App();
     const response = await supertest(app)
       .post("/signIn")
@@ -78,7 +78,7 @@ describe("POST /signin", () => {
     expect(response.status).toBe(422);
   });
 
-  it("should return 200 (correct_signIn", async () => {
+  it("should return 200 (correct)", async () => {
     const { app } = new App();
     const response = await supertest(app)
       .post("/signIn")
