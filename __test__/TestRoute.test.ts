@@ -109,6 +109,30 @@ describe("GET /test/terms", () => {
       .set("authorization", `Bearer ${token}`);
 
     expect(response.status).toBe(200);
-    expect(response.body)  });
+    expect(response.body).toBeDefined();
+  });
+  afterAll(() => prisma.$disconnect);
+});
+
+describe("GET /test/teacher", () => {
+  it("should return 401 (get all tests without token)", async () => {
+    const { app } = new App();
+
+    const response = await supertest(app).get("/test/teacher");
+
+    expect(response.status).toBe(401);
+  });
+
+  it("should return 200 (get all tests by teacher)", async () => {
+    const { app } = new App();
+    const token = await getToken(app);
+
+    const response = await supertest(app)
+      .get("/test/teachers")
+      .set("authorization", `Bearer ${token}`);
+
+    expect(response.status).toBe(200);
+    expect(response.body).toBeDefined();
+  });
   afterAll(() => prisma.$disconnect);
 });
