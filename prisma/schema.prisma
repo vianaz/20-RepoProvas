@@ -20,9 +20,9 @@ model Users {
 
 model Categories {
   id   Int    @id @default(autoincrement())
-  name String
+  name String @unique
 
-  Tests Tests[]
+  tests Tests[]
 
   @@map("categories")
 }
@@ -34,8 +34,8 @@ model Tests {
   name                String
   pdfUrl              String
 
-  teacher  TeacherDisciplines @relation(fields: [teacherDisciplineId], references: [id])
-  category Categories         @relation(fields: [categoryId], references: [id])
+  teachersDisciplines TeacherDisciplines @relation(fields: [teacherDisciplineId], references: [id])
+  categories          Categories         @relation(fields: [categoryId], references: [id])
 
   @@map("tests")
 }
@@ -45,18 +45,19 @@ model TeacherDisciplines {
   teacherId    Int
   disciplineId Int
 
-  Tests Tests[]
+  tests Tests[]
 
-  teacher    Teachers    @relation(fields: [teacherId], references: [id])
-  discipline Disciplines @relation(fields: [disciplineId], references: [id])
+  teachers    Teachers    @relation(fields: [teacherId], references: [id])
+  disciplines Disciplines @relation(fields: [disciplineId], references: [id])
 
   @@map("teacherDisciplines")
 }
 
 model Teachers {
-  id                 Int                  @id @default(autoincrement())
-  name               String
-  TeacherDisciplines TeacherDisciplines[]
+  id   Int    @id @default(autoincrement())
+  name String @unique
+
+  teacherDisciplines TeacherDisciplines[]
 
   @@map("teachers")
 }
@@ -64,18 +65,20 @@ model Teachers {
 model Disciplines {
   id     Int    @id @default(autoincrement())
   termId Int
-  name   String
+  name   String @unique
 
-  term               Terms                @relation(fields: [termId], references: [id])
-  TeacherDisciplines TeacherDisciplines[]
+  terms Terms @relation(fields: [termId], references: [id])
+
+  teacherDisciplines TeacherDisciplines[]
 
   @@map("disciplines")
 }
 
 model Terms {
-  id          Int           @id @default(autoincrement())
-  number      Int
-  Disciplines Disciplines[]
+  id     Int @id @default(autoincrement())
+  number Int @unique
+
+  disciplines Disciplines[]
 
   @@map("terms")
 }
