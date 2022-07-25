@@ -67,9 +67,15 @@ export class InsertTestService {
   }
 }
 
-export class GetByDisciplinesService {
-  static async getByDisciplinesAndTerms() {
+export class GetByTermsService {
+  static async getByTerms() {
     const byTerms = await GroupByRepository.groupByTerms();
     return byTerms;
+  }
+}
+export class GetByTeacherService {
+  static async getByTeacher() {
+    const byTeacher = await GroupByRepository.groupByTeacher();
+    return byTeacher;
   }
 }

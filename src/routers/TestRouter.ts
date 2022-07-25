@@ -16,6 +16,7 @@ export class TestRouter {
 
     router.use(tokenMiddleware);
     router.post("/test", testInsertMiddleware, TestController.insertTest);
-    router.get("/test/terms", TestController.getByDisciplinesAndTerms);
+    router.get("/test/terms", TestController.getByTerms);
+    router.get("/test/teachers", TestController.getByTeacher);
   }
 }

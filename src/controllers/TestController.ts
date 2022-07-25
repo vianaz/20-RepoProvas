@@ -1,6 +1,7 @@
 import { ITest } from "@schemas/types/TestInterface";
 import {
-  GetByDisciplinesService,
+  GetByTeacherService,
+  GetByTermsService,
   InsertTestService,
 } from "@services/TestService";
 import { Request, Response } from "express";
@@ -18,8 +19,12 @@ export class TestController {
 
     res.sendStatus(201);
   }
-  static async getByDisciplinesAndTerms(req: Request, res: Response) {
-    const result = await GetByDisciplinesService.getByDisciplinesAndTerms();
-    res.send(result);
+  static async getByTerms(req: Request, res: Response) {
+    const byTermsResultQuery = await GetByTermsService.getByTerms();
+    res.send(byTermsResultQuery);
+  }
+  static async getByTeacher(req: Request, res: Response) {
+    const byTeacherResultQuery = await GetByTeacherService.getByTeacher();
+    res.send(byTeacherResultQuery);
   }
 }
